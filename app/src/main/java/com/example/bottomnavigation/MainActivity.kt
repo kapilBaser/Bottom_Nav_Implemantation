@@ -7,9 +7,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
@@ -43,8 +45,13 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.LinearGradientShader
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.bottomnavigation.ui.theme.BottomNavigationTheme
 
 class MainActivity : ComponentActivity() {
@@ -58,7 +65,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-
+                    CustomBottomNav()
 
                 }
             }
@@ -97,9 +104,15 @@ fun CustomBottomNav(modifier: Modifier = Modifier){
 
     Column(modifier = Modifier
         .fillMaxSize()
-        .background(Color.DarkGray),
-        verticalArrangement = Arrangement.Bottom) {
+        .background(Color(43, 42, 42, 255)),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = stringResource(R.string.hello_android),
+            fontSize = 24.sp,
+            color = Color(133, 130, 130, 255),
 
+        )
+        Spacer(modifier = Modifier.height(24.dp))
         BottomAppBar(
             modifier = modifier
                 .fillMaxWidth()
@@ -108,11 +121,9 @@ fun CustomBottomNav(modifier: Modifier = Modifier){
                         colors = listOf(
                             Color.Transparent,
                             Color.Black,
-
-                            ),
+                        ),
                         startY = 0f,
-                        endY = 150f
-
+                        endY = 200f
                     )
                 ),
             containerColor = Color.Transparent
@@ -123,22 +134,7 @@ fun CustomBottomNav(modifier: Modifier = Modifier){
 
             navItems.forEachIndexed { index, items ->
                 val isSelected = index == selected
-//                NavigationBarItem(
-//                    selected = index == selected,
-//                    onClick = { selected = index },
-//                    icon = {
-//                        if (isSelected) {
-//                            Icon(imageVector = items.selectedIcon, contentDescription = null)
-//                        } else {
-//                            Icon(imageVector = items.icon, contentDescription = null)
-//                        }
-//                    },
-//                    colors = NavigationBarItemDefaults.colors(
-//                        selectedIconColor = Color.White,
-//                        unselectedIconColor = Color.LightGray,
-//                        indicatorColor = Color.Transparent
-//                    )
-//                )
+
                 CustomNavItem(
                     selected = isSelected,
                     onClick = { selected = index },
